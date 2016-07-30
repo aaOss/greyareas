@@ -50,10 +50,10 @@ var bounds = new google.maps.LatLngBounds();
 		e.preventDefault();
 		e.stopPropagation();
 
-		if (currentArea) {
-			map.data.remove(currentArea);
-			currentArea = null;
-		}
+    map.data.forEach(function(feature) {
+      map.data.remove(feature);
+    });
+
 		var postcode = $('#postcode').val();
 
         $.getJSON('/'+postcode+'.json').then(function(data){
