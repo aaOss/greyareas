@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <title>Grey Areas - Senior Citizen Services Scorecard Search System</title>
 
-<script src="https://use.typekit.net/zfm3dvj.js"></script>
-<script>try{Typekit.load({ async: true });}catch(e){}</script>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
 
 <meta name="viewport" content="width=device-width">
 <link href="css/styles.css" rel="stylesheet" type="text/css">
@@ -26,9 +25,9 @@
             
              <nav>
             <ul class="MainMenu">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="https://sites.google.com/almostanything.com.au/greyareas">About</a></li>
+                <li><a href="http://www.almostanything.com.au/contact-us/">Contact</a></li>
                 </ul>
         </nav>
         
@@ -48,8 +47,8 @@
         
         <div class="PostCodeSearch">
         	<form>
-            <input type="text" placeholder="Example: 4701" >
-            <input type="submit" class="button" value="SEARCH">
+            <input type="text" placeholder="Example: 4701"  name="postcode">
+            <input type="submit" class="button" value="SEARCH" formaction="search.html" method="get">
             </form>
         </div>
     </div>
@@ -73,7 +72,7 @@
 <footer>
 <div class="SupportingHeading">
 	<div class="ContentBox">
-    	<h1>Supported by open data from</h1>
+    	<h1>Made using open data from</h1>
     </div>
 </div>
 
@@ -90,9 +89,9 @@
 
 <div class="FooterMenu">
 	<div class="ContentBox">
-    	 <a href="#">Home</a> |
-     	<a href="#">About</a> |
-         <a href="#">Contact</a>
+    	 <a href="/">Home</a> |
+     	<a href="https://sites.google.com/almostanything.com.au/greyareas">About</a> |
+         <a href="http://www.almostanything.com.au/contact-us/">Contact</a>
     </div>
 </div>
 
@@ -102,6 +101,14 @@
 		<a href="http://almostanything.com.au"><img src="images/aa-logo.jpg"></a>
         <p>GovHack 2016 | Designed by team: <a href="http://almostanything.com.au" target="_blank">5 Shades of Grey</a></p>
     </div>
+</div>
+
+<div class="Disclaimers">
+	<div class="ContentBox">
+		This web app was developed as a proof of concept for GovHack 2016. This web app is not endorsed or officially supported by the Queensland Government, Australia Government, Australian Bureau of Statistics or GovHack. All Characters portrayed are fictious and reference to those living or dead is purely coincidental. The cheetah is the fastest land animal.  Never whistle with a mouth full of jelly. Spoiler: Darth Vader is Luke's Father (too soon?)
+		
+		Photo credit: <a href="https://www.flickr.com/photos/adwriter/257937032/">adwriter</a> via <a href="https://visualhunt.com/photos/romance/">Visual Hunt</a> / <a href="http://creativecommons.org/licenses/by-nc/2.0/">CC BY-NC</a>
+	</div>
 </div>
 
 </footer>

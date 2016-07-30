@@ -39,3 +39,7 @@ jspm_packages
 # composer and vender stuff
 vendor
 composer.lock
+composer.phar
+
+# *Shakes fist at Mac users*
+.DS_Store

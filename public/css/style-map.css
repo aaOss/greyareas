@@ -1,0 +1,228 @@
+html {
+    -moz-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+    box-sizing:border-box;
+}
+
+    *, *:before, *:after {
+        box-sizing: inherit;
+    }
+
+div,dl,dt,dd,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,select,button,p,table,blockquote,th,td {
+    margin:0;
+    padding:0;
+    line-height:inherit;
+}
+
+    dl,ul,ol,h1,h2,h3,h4,h5,h6,form,fieldset,p,blockquote,table {
+        margin: 0;
+        color: #3c3c3c;
+    }
+
+        h1,h2,h3,h4,h5,h6 {
+            margin:1em 0 .5em;
+            line-height:1.2;
+        }
+
+            h1 {
+                margin:0 0 .5em;
+            }
+
+                .site_title {
+                    margin:0;
+                }
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+address,caption,cite,code,dfn,var {
+    font-style:normal;
+    font-weight:normal;
+}
+ 
+caption,th {
+    text-align:left;
+}
+
+sup {
+    vertical-align:text-top;
+}
+
+sub {
+    vertical-align:text-bottom;
+}
+
+input,textarea,select {
+    font-family:inherit;
+    font-size:inherit;
+    font-weight:inherit;
+    padding:0 .4em;
+}
+
+/* Clearfix */
+    
+.clearfix:after {
+    content:"";
+    display:block;
+    clear:both;
+}
+
+html, body {
+    margin:0;
+    padding:0;
+    line-height:1.5;
+}
+
+    html { 
+        font-family: 'Open Sans', sans-serif;
+    }
+
+    body {
+        color: #3c3c3c;
+        font-size: 100%;
+    }
+
+    .content-box {
+        width: 100%;
+        margin: auto;
+    }
+
+.header-wapper, .footer-wrapper {
+    padding: 0 5%;
+}
+
+.MapWrapper {
+    background-size: cover;
+    height: 500px;
+    position: relative;
+}
+
+.inner-wrapper {
+    padding: 0 5%;
+    position: relative;
+}
+
+.DataBox {
+    position: absolute;
+    right: 5%;
+    top: 1em;
+    background: #fff;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    min-width: 320px;
+}
+
+.DataWrapper {
+    padding: 1em 1em 1em 4em;
+}
+
+.DataBox h1 {/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#49ce43+0,3aab35+99 */
+    background: #49ce43; /* Old browsers */
+    background: -moz-linear-gradient(top,  #49ce43 0%, #3aab35 99%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #49ce43 0%,#3aab35 99%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #49ce43 0%,#3aab35 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#49ce43', endColorstr='#3aab35',GradientType=0 ); /* IE6-9 */
+    padding: .3em;
+    margin: 0;
+    text-align: center;
+    color: #fff;
+    font-weight: 100;
+}
+
+.Data li {
+    list-style: none;
+}
+
+.Data ul {
+    padding: 0;
+}
+
+.Data h2 {
+    font-weight: 100;
+    font-size: 1em;
+    margin: 0.6em 0 0;
+    width: 100%;
+}
+
+progress {
+    background-color: #313131;
+    border: 0;
+    height: 18px;
+    border-radius: 3px;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #313131;
+    border: 0;
+    height: 18px;
+    border-radius: 3px;
+}
+
+progress::-webkit-progress-value {
+    background: #49ce43; /* Old browsers */
+    background: -moz-linear-gradient(top,  #49ce43 0%, #3aab35 99%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #49ce43 0%,#3aab35 99%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #49ce43 0%,#3aab35 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#49ce43', endColorstr='#3aab35',GradientType=0 ); /* IE6-9 */
+    border: 0;
+    height: 18px;
+    border-radius: 3px;
+}
+
+progress::-moz-progress-bar {
+    background-color: #313131;
+    border: 0;
+    height: 18px;
+    border-radius: 3px;
+    color: red;
+}
+
+progress::-moz-progress-value {
+    background: #49ce43; /* Old browsers */
+    background: -moz-linear-gradient(top,  #49ce43 0%, #3aab35 99%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #49ce43 0%,#3aab35 99%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #49ce43 0%,#3aab35 99%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#49ce43', endColorstr='#3aab35',GradientType=0 ); /* IE6-9 */
+    border: 0;
+    height: 18px;
+    border-radius: 3px;
+}
+
+.stay-active::before {content: "";background: url(../images/stay-active-icon.png) center center no-repeat;width: 40px;height: 40px;background-size: contain;display: block;position: absolute;left: -3em;top: .2em;}
+
+.stay-connected::before {content: "";background: url(../images/stay-connected-icon.png) center center no-repeat;width: 35px;height: 35px;background-size: contain;display: block;position: absolute;left: -3em;top: .2em;}
+
+.contribute-economically::before {content: "";background: url(../images/eco-icon.png) center center no-repeat;width: 35px;height: 35px;background-size: contain;display: block;position: absolute;left: -3em;top: .2em;}
+
+.contribute-socially::before {content: "";background: url(../images/social-icon.png) center center no-repeat;width: 35px;height: 35px;background-size: contain;display: block;position: absolute;left: -3em;top: .3em;}
+
+.contribute-culturally::before {content: "";background: url(../images/culture-icon.png) center center no-repeat;width: 35px;height: 35px;background-size: contain;display: block;position: absolute;left: -3em;top: .2em;}
+
+.pensioner-count::before {content: "";background: url(../images/pensioner-icon.png) center center no-repeat;width: 35px;height: 35px;background-size: contain;display: block;position: absolute;left: -3em;top: .2em;}
+
+.contribute-culturally {
+    position: relative;
+}
+
+.contribute-socially {
+    position: relative; 
+}
+
+.contribute-economically {
+    position: relative;
+}
+
+.stay-connected {
+    position: relative;
+}
+
+.stay-active {
+    position: relative;
+}
+
+.pensioner-count {
+    position: relative;
+}

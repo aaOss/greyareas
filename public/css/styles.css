@@ -5,7 +5,7 @@ html, body {
 	font-size: 100%;
 	font-size: 1em;
 	color:#000;
-	font-family: "myriad-pro",sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	width:100%;
 	margin: 0 auto;
 	font-weight: 300;
@@ -14,7 +14,7 @@ html, body {
 .ContentBox {width:100%; max-width:1000px; margin:0 auto;}
 
 header {
-	padding:20px 3% 20px;
+	padding:10px 3% 10px;
 }
 
 header .ContentBox {
@@ -48,6 +48,7 @@ ul.SocialIcons, ul.SocialIcons li {
 
 ul.SocialIcons {
 	text-align: right;
+	padding-top:10px;
 }
 
 ul.SocialIcons li {
@@ -123,13 +124,13 @@ ul.MainMenu li:last-child a {
 .SearchBoxContainer {
 	width:100%;
 	min-height: 450px;
-	background: url(../images/hero-bg.jpg) center center no-repeat; background-size: cover;
+	background: url(../images/hero-bg-new.jpg) center center no-repeat; background-size: cover;
 }
 
 .ImgText {
 	width:100%;
 	max-width: 60%;
-	margin-top: 7vw;
+	margin-top: 5vw;
 }
 
 .PostCodeHeader {
@@ -160,12 +161,44 @@ input.button {
 	background: #ff0000;
 	color:#FFF!important;
 	margin:9px 0 9px;
+	border-radius: 0;
+	-webkit-appearance:none;
+}
+
+input.button:hover {
+	background: #be0d0d
+}
+
+@media (max-width:600px) {
+	
+	.ImgText {
+	width:100%;
+	margin-top: 200px;
+ 	max-width: 100%;
+}
+	
+	
+	.PostCodeHeader {
+	width:100%;
+	text-align: center;
+	padding:10px 0 10px;
+}
+	
+	.PostCodeSearch {
+		background:#FFF;
+		padding:0 3% 0;
+	}
+	
+	.SearchBoxContainer form input {
+	width:45%;
+}
+	
 }
 
 @media (max-width:1440px) {
 	
 	.SearchBoxContainer {
-		min-height: 400px;
+		min-height: 300px;
 	}
 	
 }
@@ -173,7 +206,7 @@ input.button {
 @media (max-width:970px) {
 	
 	.SearchBoxContainer {
-		min-height: 300px;
+		min-height: 250px;
 	}
 	
 }
@@ -182,7 +215,7 @@ input.button {
 	
 	.SearchBoxContainer {
 		min-height: 200px;
-		background: url(../images/hero-bg.jpg) right center no-repeat; background-size: cover;
+		background: url(../images/hero-bg-new.jpg) right center no-repeat; background-size: cover;
 	}
 	
 }
@@ -191,7 +224,7 @@ input.button {
 	background: #3aaa35;
 	color:#FFF;
 	margin: 0 auto;
-	padding:10px 0 10px;
+	padding:5px 0 5px;
 	text-align: center;
 }
 
@@ -338,4 +371,22 @@ ul.DataLogos li img {
 .Credits  a:hover {
 	color:#000;
 	text-decoration: underline;
+}
+
+.Disclaimers {
+	text-align: center;
+	font-size: 11px;
+	padding:20px 3% 20px;
+}
+
+.Disclaimers a {
+	text-align: center;
+	font-size: 11px;
+	color:#000;
+}
+
+.Disclaimers a:hover {
+	text-align: center;
+	font-size: 11px;
+	color:#d1d3d4;
 }

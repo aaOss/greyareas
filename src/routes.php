@@ -10,14 +10,66 @@ $app = new \Slim\App([
         'displayErrorDetails' => true,
 	]
 ]);
-$app->get('/', function (Request $request, Response $response) use ($db) {
+$app->get('/search.html', function (Request $request, Response $response) use ($db) {
 
-	$response->write(file_get_contents(__DIR__.'/templates/index.html'));
+	ob_start();
+
+	if (!isset($_GET['postcode']) || empty($_GET['postcode'])) {
+		$postcode = '';
+	} else {
+		$postcode = $_GET['postcode'];
+	}
+
+	if (!preg_match("/^[0-9]{4}$/", $postcode)) {
+		$postcode = '';
+	}	
+
+	require(__DIR__.'/templates/search.php');
+	
+	$body = ob_get_clean();
+
+	$response->write($body);
 
 	return $response;
 
 
 });
+
+$app->get('/{lat}/{lon}/topostcode.json', function (Request $request, Response $response) use ($db) {
+	header('Content-type: application/json');
+
+	$lat = $request->getAttribute('lat');
+	$lon = $request->getAttribute('lon');
+
+	try {
+
+		if (!is_numeric($lat) || !is_numeric($lon)) {
+			throw new Exception ('Invalid position!',400);
+		}
+
+		$geospatial= $db->get_row("SELECT poa_code FROM postcodes WHERE st_within(GeomFromText('POINT($lon $lat)',1),SHAPE)");
+
+		if (!$geospatial) {
+			throw new Exception('cant find a post code for that area.',404);
+		}
+
+		$payload = [
+			'response' => 200,
+			'postcode' => $geospatial->poa_code
+		];
+
+	} catch (Exception $e) {
+		$payload = [
+			'response' => $e->getCode(),
+			'message' => $e->getMessage()
+		];
+	}
+
+	$jsonResponse = $response->withJson($payload,200);
+	return $jsonResponse;
+
+});
+
 $app->get('/{postcode}.json', function (Request $request, Response $response) use ($db) {
 	header('Content-type: application/json');
 	try {
@@ -27,24 +79,64 @@ $app->get('/{postcode}.json', function (Request $request, Response $response) us
 		if (!preg_match("/^[0-9]{4}$/", $postcode)) {
 			throw new Exception('invalid Postcode!',400);
 		}
-		$res= $db->get_row("SELECT poa_code, ST_AsGeoJSON(SHAPE) as 'geometry' FROM test WHERE poa_code = '$postcode'");
 
-		if (!$res) {
+		$geospatial= $db->get_row("SELECT poa_code, ST_AsGeoJSON(SHAPE) as 'geometry' FROM postcodes WHERE poa_code = '$postcode'");
+
+		if (!$geospatial) {
 			throw new Exception('Post code not found!!',404);
 		}
+
+		$countArr = [];
+
+		//Get some pensioner counts
+		$counts = $db->get_row("SELECT * FROM dss_demographics WHERE postcode = '$postcode'");
+		if (!$counts) {
+			throw new Exception('No demographic data found for this post code',404);
+		}
+		$seniors = is_numeric($counts->age_pension) ? (int) $counts->age_pension : 0; 
+		$healthcare = is_numeric($counts->seniors_health_card) ? (int) $counts->seniors_health_card : 0; 
+		//if we have more senior helthcare card holders we'll use that
+		if ($healthcare < $seniors) {
+			$countArr['Pensioners'] = $seniors;
+		} else {
+			$countArr['Pensioners'] = $healthcare;
+		}
+		//done getting pensioner counts
+
+		$facilities = $db->get_results("SELECT * FROM community_facilities WHERE st_within(`position`, (SELECT SHAPE FROM postcodes WHERE poa_code = '$postcode'))");
+
+		foreach ($facilities as $facility) {
+
+			if (!array_key_exists($facility->FEATURETYPE, $countArr)) {
+				$countArr[$facility->FEATURETYPE] = 0;
+			}
+			$countArr[$facility->FEATURETYPE]++;
+		}
+
+		$discounts = $db->get_results("SELECT * FROM business_discounts WHERE Outlet_Postcode = '$postcode'");
+		error_log($db->error);
+		foreach ($discounts as $discount) {
+
+			if (!array_key_exists('Seniors Discount Location', $countArr)) {
+				$countArr['Seniors Discount Location'] = 0;
+			}
+			$countArr['Seniors Discount Location']++;
+		}
+
 
 		$body = [
 
 			'response' => 200,
-			'postcode' => $res->poa_code,
+			'postcode' => $geospatial->poa_code,
+			'counts' => $countArr,
 			'geometry' => [
 				'type' => 'FeatureCollection',
 				'features' => [
 						[
 							'type' => 'Feature',
-							'geometry' => json_decode($res->geometry),
+							'geometry' => json_decode($geospatial->geometry),
 							"properties" => [
-								'postcode' => $res->poa_code,
+								'postcode' => $geospatial->poa_code,
 							]
 						]
 					]
