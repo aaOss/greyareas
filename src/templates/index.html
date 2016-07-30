@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Simple Map</title>
+<meta name="viewport" content="initial-scale=1.0">
+<meta charset="utf-8">
+<style>
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position:relative;
+  }
+  #roy {
+    height: 100%;
+  }
+  #postcode-form {
+  	position:absolute;
+  	bottom:0;
+  	right:0;
+	  }
+</style>
+</head>
+<body>
+<div id="roy"></div>
+<form id="postcode-form">
+	<input type="text" name="pc" value="" id="postcode" />
+	<button type="submit" name="send">
+	Go
+	</button>
+</form>
+<script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script>
+  var map;
+  var currentArea = null;
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('roy'), {
+		zoom: 4,
+		center: {lat: -28, lng: 137}
+    });
+	  map.data.addListener('addfeature', function(e) {
+
+var bounds = new google.maps.LatLngBounds();
+	    processPoints(e.feature.getGeometry(), bounds.extend, bounds);
+	    map.fitBounds(bounds);
+	  });
+    //map.data.loadGeoJson('4701.json');
+	$('#postcode-form').on('submit',function(e){
+		e.preventDefault();
+		e.stopPropagation();
+
+		if (currentArea) {
+			map.data.remove(currentArea);
+			currentArea = null;
+		}
+		var postcode = $('#postcode').val();
+
+        $.getJSON('/'+postcode+'.json').then(function(data){
+
+        	if (data.response != 200) {
+        		alert(data.message);
+        		return;
+        	}
+        	currentArea = map.data.addGeoJson(data.geometry);
+        });
+	});
+  }
+function processPoints(geometry, callback, thisArg) {
+  if (geometry instanceof google.maps.LatLng) {
+    callback.call(thisArg, geometry);
+  } else if (geometry instanceof google.maps.Data.Point) {
+    callback.call(thisArg, geometry.get());
+  } else {
+    geometry.getArray().forEach(function(g) {
+      processPoints(g, callback, thisArg);
+    });
+  }
+}
+</script>
+</body>
+</html>
