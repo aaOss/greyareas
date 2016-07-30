@@ -1,0 +1,341 @@
+@charset "UTF-8";
+/* CSS Document */
+
+html, body {
+	font-size: 100%;
+	font-size: 1em;
+	color:#000;
+	font-family: "myriad-pro",sans-serif;
+	width:100%;
+	margin: 0 auto;
+	font-weight: 300;
+}
+
+.ContentBox {width:100%; max-width:1000px; margin:0 auto;}
+
+header {
+	padding:20px 3% 20px;
+}
+
+header .ContentBox {
+	position: relative;
+	display:flex;
+}
+
+.SiteLogo {
+	width:30%;
+}
+
+.SiteLogo img {width:100%; max-width: 250px;}
+
+.Social {
+	text-align: right;
+	width:70%;
+}
+
+@media (max-width:700px) {
+	
+	.SiteLogo, .Social {width:50%;}
+	
+}
+
+ul.SocialIcons, ul.SocialIcons li {
+	list-style: none;
+	text-indent: 0;
+	margin: 0;
+	padding:0;
+}
+
+ul.SocialIcons {
+	text-align: right;
+}
+
+ul.SocialIcons li {
+	text-align: right;
+	display: inline-block;
+}
+
+ul.SocialIcons li img {
+	width:100%;
+	max-width: 50px;
+}
+
+ul.MainMenu, ul.MainMenu li  {
+	list-style: none;
+	text-indent: 0;
+	margin: 0;
+	padding:0;
+}
+
+ul.MainMenu li {
+	text-align: right;
+	display: inline-block;
+}
+
+ul.MainMenu li a {
+	line-height: 3;
+	text-decoration: none;
+	font-size: 1.2em;
+	color:#000;
+	padding:0 20px 0;
+	border-right: 1px solid #3aaa35;
+}
+
+ul.MainMenu li a:hover {
+	text-decoration: underline;
+	color:#3aaa35;
+}
+
+ul.MainMenu li:last-child a {
+	border-right: none;
+}
+
+.MobileMenu {
+	display:none;
+}
+
+@media (max-width:620px) {
+	
+	ul.MainMenu, .SocialIcons {display:none;}
+	
+	.MobileMenu {
+		display:block;
+		width:35px;
+		height: 25px;
+		background:linear-gradient(
+            to bottom,
+            #000 0,
+            #000 15%,
+            transparent 15%,
+            transparent 42%,
+            #000 42%,
+            #000 57%,
+            transparent 57%,
+            transparent 85%,
+            #000 85% );
+			position:absolute;
+			right:25px;
+			top:50px;
+	}
+	
+}
+
+.SearchBoxContainer {
+	width:100%;
+	min-height: 450px;
+	background: url(../images/hero-bg.jpg) center center no-repeat; background-size: cover;
+}
+
+.ImgText {
+	width:100%;
+	max-width: 60%;
+	margin-top: 7vw;
+}
+
+.PostCodeHeader {
+	font-size:1.2em;
+	color:#FFF;
+	text-align: center;
+	padding:10px 30px 10px;
+	background: #575656;
+	width:250px;
+	font-weight: 300;
+}
+
+.SearchBoxContainer form {
+	width:100%;
+	max-width: 400px;
+	background:#FFF;
+}
+
+.SearchBoxContainer form input {
+	border:none;
+	font-size:1.3em;
+	padding:10px;
+	outline: 0;
+	color:#919191;
+}
+
+input.button {
+	background: #ff0000;
+	color:#FFF!important;
+	margin:9px 0 9px;
+}
+
+@media (max-width:1440px) {
+	
+	.SearchBoxContainer {
+		min-height: 400px;
+	}
+	
+}
+
+@media (max-width:970px) {
+	
+	.SearchBoxContainer {
+		min-height: 300px;
+	}
+	
+}
+
+@media (max-width:700px) {
+	
+	.SearchBoxContainer {
+		min-height: 200px;
+		background: url(../images/hero-bg.jpg) right center no-repeat; background-size: cover;
+	}
+	
+}
+
+.RatingContainer {
+	background: #3aaa35;
+	color:#FFF;
+	margin: 0 auto;
+	padding:10px 0 10px;
+	text-align: center;
+}
+
+.RatingContainer h1 {
+	font-weight: 300;
+}
+
+.RatingContainer strong {
+	font-weight: 500;
+}
+
+ul.RatingIcons, ul.RatingIcons li {
+	list-style: none;
+	padding:0;
+	margin:0;
+	text-indent: 0;
+}
+
+ul.RatingIcons {
+	display: flex;
+	flex-flow: row wrap;
+}
+
+ul.RatingIcons li {
+	width: 20%;
+	justify-content: center;
+	margin: 0 auto;
+	font-size:1.2em;
+}
+
+ul.RatingIcons li strong {
+	display: block;
+}
+
+ul.RatingIcons li img {
+	display: block;
+	width:100%;
+	max-width: 150px;
+	margin:0 auto;
+}
+
+@media (max-width:1000px) {
+	
+	ul.RatingIcons li {
+	width: 33%;
+	justify-content: center;
+	margin: 0 auto;
+	font-size:1em;	
+}
+	
+}
+
+.SupportingHeading {
+	color:#000;
+	font-weight: 100;
+	background: #d1d3d4;
+	padding:10px 3% 10px;
+}
+
+.SupportingHeading h1 {
+	color:#000;
+	font-weight: 100;
+	padding:0;
+	margin:0;
+	font-size: 1.3em;
+}
+
+ul.DataLogos, ul.DataLogos li {
+	list-style: none;
+	padding:0;
+	margin:0;
+	text-indent: 0;
+}
+
+ul.DataLogos {
+	display: flex;
+	flex-flow: row wrap;
+	margin:20px 0 20px;
+}
+
+ul.DataLogos li {
+	width: 25%;
+	justify-content: center;
+	margin: 0 auto;
+	font-size:1.2em;
+	text-align: center;
+}
+
+@media (max-width:650px) {
+	
+	ul.DataLogos li {
+	width: 50%;
+	justify-content: center;
+	margin: 0 auto;
+	font-size:1.2em;
+	text-align: center;
+}
+	
+}
+
+ul.DataLogos li img {
+	display: block;
+	width:100%;
+	max-width: 80%;
+	margin:0 auto;
+}
+
+.FooterMenu {
+	color:#000;
+	font-weight: 100;
+	background: #d1d3d4;
+	padding:10px 3% 10px;
+	text-align: center;
+}
+
+.FooterMenu a {
+	text-decoration: none;
+	color: #000;
+}
+
+.FooterMenu a:hover {
+	text-decoration: underline;
+	color: #000;
+}
+
+.Credits  {
+	text-align:center;
+	font-size: 12px;
+	margin-bottom:20px;
+}
+
+.Credits img {
+	width:100%;
+	max-width: 75px;
+	margin: 0 auto;
+	padding-top:20px;
+}
+
+.Credits  a {
+	color:#000;
+	text-decoration: none;
+}
+
+.Credits  a:hover {
+	color:#000;
+	text-decoration: underline;
+}
