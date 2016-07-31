@@ -67,11 +67,17 @@
                         <h1 id="data-field-postcode"></h1>
                         <div class="DataWrapper">
                             <div class="Data">
-                                    <div class="stay-active"><h2>Stay Active:</h2><progress value="55" max="100">55% / 100%</progress></div>
-                                    <div class="stay-connected"><h2>Stay Connected:</h2><progress value="80" max="100"></progress></div>
-                                    <div class="contribute-economically"><h2>Contribute Economically:</h2><progress value="45" max="100"></progress></div>
-                                    <div class="contribute-socially"><h2>Contribute Socially:</h2><progress value="10" max="100"></progress></div>
-                                    <div class="contribute-culturally"><h2>Contribute Culturally:</h2><progress value="20" max="100"></progress></div><div class="pensioner-count"><h2>Pensioner Count:</h2><progress value="40" max="100"></progress></div>
+                                    <div class="stay-active"><h2>Stay Active:</h2><progress id="bar-active" value="0" max="100">55% / 100%</progress></div>
+                                    <div class="stay-connected"><h2>Stay Connected:</h2><progress id="bar-connected" value="0" max="100"></progress></div>
+                                    <div class="contribute-economically"><h2>Contribute Economically:</h2><progress id="bar-economic" value="0" max="100"></progress></div>
+                                    <div class="contribute-socially"><h2>Contribute Socially:</h2><progress id="bar-social" value="0" max="100"></progress></div>
+                                    <div class="contribute-culturally"><h2>Contribute Culturally:</h2><progress id="bar-cultural" value="0" max="100"></progress></div><div class="pensioner-count"><h2>Pensioner Count:</h2><progress value="0" max="100"></progress></div>
+                            </div>
+                            <div class="PostCodeSearch">
+        	                   <form>
+                                <input type="text" placeholder="Example: 4701"  name="postcode">
+                                <input type="submit" class="button" value="SEARCH" formaction="search.html" method="get">
+                                </form>
                             </div>
                             <div class="DataResults">
                                 <div class="DataText">
@@ -83,13 +89,6 @@
                             </div>
                         </div>
                     </div>
-        
-        <div class="PostCodeSearch">
-        	<form>
-            <input type="text" placeholder="Example: 4701"  name="postcode">
-            <input type="submit" class="button" value="SEARCH" formaction="search.html" method="get">
-            </form>
-        </div>
     
     </div>
 <footer>
@@ -135,7 +134,7 @@
 </div>
 
 </footer>
-<script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?callback=initMap&amp;key=AIzaSyDwq1vBN2Yslgozpw6IzWA6buqVyO52fkM" async defer></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script>
   var map;
@@ -199,6 +198,22 @@
       map.data.addGeoJson(res.geometry);
 
       $('#data-field-postcode').html(res.postcode);
+
+      
+      console.log('mins');
+      console.log(res.min);
+      console.log('maxs');
+      console.log(res.max);
+      console.log('values');
+      console.log(res.values);
+      console.log('averages');
+      console.log(res.avgs);
+      console.log('percentages');
+      console.log(res.percentages);
+
+      for (var key in res.percentages) {
+        $('#bar-'+key).attr('value',res.percentages[key]);
+      }
 
       var text = '';
       for (var n in res.counts) {

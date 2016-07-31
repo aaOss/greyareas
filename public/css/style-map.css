@@ -226,3 +226,26 @@ progress::-moz-progress-value {
 .pensioner-count {
     position: relative;
 }
+
+.PostCodeSearch input[type="text"] {
+    width: 125px;
+}
+
+.PostCodeSearch input.button {
+    background: #49ce43;
+    background: -moz-linear-gradient(top, #49ce43 0%, #3aab35 99%);
+    background: -webkit-linear-gradient(top, #49ce43 0%,#3aab35 99%);
+    background: linear-gradient(to bottom, #49ce43 0%,#3aab35 99%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#49ce43', endColorstr='#3aab35',GradientType=0 );
+    border: none;
+    padding: 2px 9px 1px;
+    border-radius: 3px;
+}
+
+.PostCodeSearch input.button:hover {
+    background: #49ce43;
+    background: -moz-linear-gradient(top, #49ce43 0%, #3aab35 99%);
+    background: -webkit-linear-gradient(top, #49ce43 0%,#3aab35 99%);
+    background: linear-gradient(to bottom, #49ce43 0%,#3aab35 99%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#49ce43', endColorstr='#3aab35',GradientType=0 );
+}

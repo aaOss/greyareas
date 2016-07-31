@@ -103,32 +103,83 @@ $app->get('/{postcode}.json', function (Request $request, Response $response) us
 		}
 		//done getting pensioner counts
 
-		$facilities = $db->get_results("SELECT * FROM community_facilities WHERE st_within(`position`, (SELECT SHAPE FROM postcodes WHERE poa_code = '$postcode'))");
+		//preliminary 
+		// $facilities = $db->get_results("SELECT * FROM community_facilities WHERE st_within(`position`, (SELECT SHAPE FROM postcodes WHERE poa_code = '$postcode'))");
 
-		foreach ($facilities as $facility) {
+		// foreach ($facilities as $facility) {
 
-			if (!array_key_exists($facility->FEATURETYPE, $countArr)) {
-				$countArr[$facility->FEATURETYPE] = 0;
+		// 	if (!array_key_exists($facility->FEATURETYPE, $countArr)) {
+		// 		$countArr[$facility->FEATURETYPE] = 0;
+		// 	}
+		// 	$countArr[$facility->FEATURETYPE]++;
+		// }
+
+		// $discounts = $db->get_results("SELECT * FROM business_discounts WHERE Outlet_Postcode = '$postcode'");
+		// error_log($db->error);
+		// foreach ($discounts as $discount) {
+
+		// 	if (!array_key_exists('Seniors Discount Location', $countArr)) {
+		// 		$countArr['Seniors Discount Location'] = 0;
+		// 	}
+		// 	$countArr['Seniors Discount Location']++;
+		// }
+
+		$scores = $db->get_row("SELECT * FROM postcode_scores WHERE postcode = '$postcode'");
+
+		$areas = [
+			'cultural',
+			'social',
+			'connected',
+			'economic',
+			'active',
+			'average',
+		];
+
+		$percentages = [];
+		$vals = [];
+		$maxes = [];
+		$mins = [];
+		$avgs = [];
+
+		foreach ($areas as $area) {
+			$max = (int) $db->get_var("SELECT max($area) FROM postcode_scores");
+			$avg = (int) $db->get_var("SELECT avg($area) FROM postcode_scores");
+			$min = (int) $db->get_var("SELECT min($area) FROM postcode_scores");
+
+			$value = (int) $scores->{$area};
+			//min always seems to be 0, so leave it out
+			$percentile = ceil( ($value / $max ) *100);
+
+			if (is_nan($percentile) || is_infinite($percentile)) {
+				$percentile = 0;
+			} 
+			if ($percentile > 100) {
+				$percentile = 100;
 			}
-			$countArr[$facility->FEATURETYPE]++;
-		}
 
-		$discounts = $db->get_results("SELECT * FROM business_discounts WHERE Outlet_Postcode = '$postcode'");
-		error_log($db->error);
-		foreach ($discounts as $discount) {
+			$percentages[$area] = $percentile;
+			$vals[$area] = $value;
+			$maxes[$area] = $max;
+			$mins[$area] = $min;
+			$avgs[$area] = $avg;
+		};
 
-			if (!array_key_exists('Seniors Discount Location', $countArr)) {
-				$countArr['Seniors Discount Location'] = 0;
-			}
-			$countArr['Seniors Discount Location']++;
-		}
-
+		// var_dump($vals);
+		// var_dump($mins);
+		// var_dump($maxes);
+		// var_dump($percentages);
+		// exit;
 
 		$body = [
 
 			'response' => 200,
 			'postcode' => $geospatial->poa_code,
 			'counts' => $countArr,
+			'percentages' => $percentages,
+			'values' => $vals,
+			'min' => $mins,
+			'max' => $maxes,
+			'avgs' => $avgs,
 			'geometry' => [
 				'type' => 'FeatureCollection',
 				'features' => [
