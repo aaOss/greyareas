@@ -20,12 +20,18 @@ The end result is a static HTML site with a PHP api to retrieve data for a post 
   - MySQL
   - Slim Framework
   - EzSQL For talking to mysql
+  - in modifying the data, nodeJS was used to manipulate things into more readable forms, to run these scripts nodejs is needed, with lodash and xmljs
+  - Postcodes were added to the database using a freeware tool called ogr2ogr on the abs database of posted listed below
 
 ## In action
 You can see it running at http://greyareas.online
 
 ## Installing
 Greyareas runs on a generic lamp stack (For example we used ubuntu serve 16.04 and `sudo tasksel install lamp-server`) we set up a database, imported the SQL into the database from the data directory, and pointed the apache server to the public folder.
+
+A completed database of whats on the live site is in data under live-data.sql.gz.
+
+To run this on your own server, set up a database, edit the mysql config in src/routes.php install php composer (https://getcomposer.org/), run `composer.phar install` in the root directory and you should be good to go!
 
 Data is obtained and hacked at from the following sources:
 (All the modifided/massaged data has been plonked into /data)
