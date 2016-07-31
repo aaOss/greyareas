@@ -148,7 +148,7 @@ $app->get('/{postcode}.json', function (Request $request, Response $response) us
 
 			$value = (int) $scores->{$area};
 			//min always seems to be 0, so leave it out
-			$percentile = ceil( ($value / $max ) *100);
+			$percentile = ceil( ($value / ($max) ) *100);
 
 			if (is_nan($percentile) || is_infinite($percentile)) {
 				$percentile = 0;
