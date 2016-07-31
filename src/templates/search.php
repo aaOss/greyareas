@@ -67,11 +67,13 @@
                         <h1 id="data-field-postcode"></h1>
                         <div class="DataWrapper">
                             <div class="Data">
+                                    <div class="pensioner-count"><h2>Pensioner Count:</h2><span id="pensioner-count"></span></div>
                                     <div class="stay-active"><h2>Stay Active:</h2><progress id="bar-active" value="0" max="100">55% / 100%</progress></div>
                                     <div class="stay-connected"><h2>Stay Connected:</h2><progress id="bar-connected" value="0" max="100"></progress></div>
                                     <div class="contribute-economically"><h2>Contribute Economically:</h2><progress id="bar-economic" value="0" max="100"></progress></div>
                                     <div class="contribute-socially"><h2>Contribute Socially:</h2><progress id="bar-social" value="0" max="100"></progress></div>
-                                    <div class="contribute-culturally"><h2>Contribute Culturally:</h2><progress id="bar-cultural" value="0" max="100"></progress></div><div class="pensioner-count"><h2>Pensioner Count:</h2><progress value="0" max="100"></progress></div>
+                                    <div class="contribute-culturally"><h2>Contribute Culturally:</h2><progress id="bar-cultural" value="0" max="100"></progress></div>
+                                    <div class="overall"><h2>Overall grade:</h2><span id="grade"></span></div>
                             </div>
                             <div class="PostCodeSearch">
         	                   <form>
@@ -199,7 +201,6 @@
 
       $('#data-field-postcode').html(res.postcode);
 
-      
       console.log('mins');
       console.log(res.min);
       console.log('maxs');
@@ -214,6 +215,22 @@
       for (var key in res.percentages) {
         $('#bar-'+key).attr('value',res.percentages[key]);
       }
+      $('#pensioner-count').html(res.counts.Pensioners);
+      var grade;
+
+      if (res.percentages.average > 80) {
+        grade = 'a';
+      } else if (res.percentages.average > 60) {
+        grade = 'b';
+      } else if (res.percentages.average > 40) {
+        grade = 'c';
+      } else if (res.percentages.average > 20) {
+        grade = 'd';
+      } else {
+        grade = 'e';
+      }
+
+      $('#grade').html('<img src="/images/'+grade+'-grade.png" alt="'+grade+'" />');
 
       var text = '';
       for (var n in res.counts) {
