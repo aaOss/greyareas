@@ -13,9 +13,9 @@ We have obtained a database of australian postcodes and geomapped them onto a ma
  - active
  - average
 
- The end result is a static HTML site with a PHP api to retrieve data for a post code where you can explore what we have curated.
+The end result is a static HTML site with a PHP api to retrieve data for a post code where you can explore what we have curated.
 
- ## Uses
+## Uses
   - PHP 7
   - MySQL
   - Slim Framework
